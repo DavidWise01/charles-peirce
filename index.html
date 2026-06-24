@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles Sanders Peirce — one sign builds all logic</title>
+<meta name="description" content="LOGIKĒ XIII — Charles Sanders Peirce (1839–1914). The American polymath who, independently of Boole's heirs and of Frege, reached the deepest results of modern logic: he showed a SINGLE connective — his 'ampheck', the arrow ↓ (NOR) — is enough to build every logical function (1880, decades before Sheffer); and he built the logic of RELATIONS and QUANTIFIERS (his Σ for 'there exists', Π for 'for all'), independently of Frege. Live: NOR-universality (NOT, AND, OR all from one gate) and Peirce's quantified relations (Σx Πy ≠ Πy Σx). Honest: he published little and obscurely, died destitute, and was eclipsed — the credit went to others. David Lee Wise, two-layer honest.">
+<style>
+  :root{--bg:#0c0f17;--panel:#121622;--panel2:#19202f;--edge:#2a3346;--ink:#ede6d6;--dim:#b3ad9a;--faint:#7c7660;
+    --ochre:#d9b66a;--ochre2:#f0d79a;--proof:#5ad1ff;--proof2:#a7e6ff;--one:#7fe0a0;--zero:#fb7185;--amber:#fbbf24;--ember:#fb923c;
+    --mono:'SFMono-Regular',ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;--serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.58;background-image:radial-gradient(1100px 560px at 75% -10%,#1c2436 0%,transparent 55%),radial-gradient(900px 500px at 0% 100%,#14110a 0%,transparent 55%);}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 26px 90px}
+  header{border-bottom:1px solid var(--edge);padding-bottom:22px;margin-bottom:24px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ochre);opacity:.95}
+  h1{font-family:Georgia,serif;font-size:38px;line-height:1.08;margin:.3em 0 .14em;font-weight:600}h1 em{color:var(--ochre2);font-style:italic}
+  .who{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.04em}
+  .sub{color:var(--dim);font-size:16px;max-width:74ch;margin-top:14px}.sub b{color:var(--ink)}
+  .verdicts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:22px 0}@media(max-width:720px){.verdicts{grid-template-columns:1fr}}
+  .vc{border:1px solid var(--edge);border-radius:11px;padding:13px 15px;border-top-width:3px;background:rgba(18,22,34,.6)}
+  .vc .badge{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em}
+  .vc.s{border-top-color:var(--one)}.vc.s .badge{color:var(--one)} .vc.m{border-top-color:var(--amber)}.vc.m .badge{color:var(--amber)} .vc.f{border-top-color:var(--ember)}.vc.f .badge{color:var(--ember)}
+  .vc p{font-size:12px;color:var(--dim);margin:6px 0 0;line-height:1.45}.vc p b{color:var(--ink)}
+  section{margin:36px 0}
+  h2{font-size:13px;font-family:var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre2);border-left:2px solid var(--ochre);padding-left:11px;margin:0 0 6px}
+  .lede{color:var(--dim);font-size:15px;margin:0 0 18px;max-width:80ch}
+  .panel{background:linear-gradient(180deg,var(--panel),#0a0d14);border:1px solid var(--edge);border-radius:14px;padding:20px;box-shadow:0 24px 60px -40px #000}
+  .controls{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:14px}
+  button{font-family:var(--mono);font-size:12px;color:var(--ink);background:#1a2030;border:1px solid var(--edge);border-radius:8px;padding:8px 13px;cursor:pointer}button:hover{background:#222b3e;border-color:var(--ochre)}
+  .sw{font-family:var(--mono);font-size:13px;padding:8px 15px;border-radius:8px;border:1px solid var(--edge);background:#1a2030;color:var(--zero);cursor:pointer;min-width:64px}
+  .sw.on{color:var(--one);border-color:#2f5b40;background:#0d1a12}
+  .gates{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}@media(max-width:640px){.gates{grid-template-columns:1fr}}
+  .gate{border:1px solid var(--edge);border-radius:10px;padding:13px;background:rgba(0,0,0,.16);text-align:center}
+  .gate .gn{font-family:var(--mono);font-size:12px;color:var(--ochre2);font-weight:700}
+  .gate .gf{font-family:var(--mono);font-size:11px;color:var(--faint);margin:5px 0 9px;min-height:30px;line-height:1.4}
+  .gate .gv{font-family:var(--mono);font-size:22px;font-weight:700}
+  .gate .gv.one{color:var(--one)}.gate .gv.zero{color:var(--zero)}
+  .gate .match{font-family:var(--mono);font-size:10px;color:var(--one);margin-top:6px}
+  .tbl{border-collapse:collapse;font-family:var(--mono);font-size:13px;margin:14px auto 0}
+  .tbl th,.tbl td{border:1px solid var(--edge);padding:5px 12px;text-align:center;color:var(--dim)}
+  .tbl th{color:var(--ochre);font-weight:700}.tbl td.lit{background:#2a2414;color:var(--ochre2)}
+  .tbl td.outone{color:var(--one)}.tbl td.outzero{color:var(--zero)}
+  .note{color:var(--dim);font-size:13.5px;border-left:2px solid var(--edge);padding-left:13px;margin:16px 0 0}.note b{color:var(--ink)}
+  .matrix{display:inline-grid;gap:5px;margin:8px auto 0;font-family:var(--mono)}
+  .cellR{width:38px;height:38px;border:1px solid var(--edge);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--faint);background:#0c1622}
+  .cellR.on{background:#0d1a12;border-color:#2f5b40;color:var(--one)}
+  .cellR.hd{cursor:default;color:var(--ochre);background:transparent;border:none}
+  .qrow{font-family:var(--mono);font-size:14px;margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+  .qrow .q b{color:var(--proof2)}.qrow .v{font-weight:700}.qrow .v.t{color:var(--one)}.qrow .v.f{color:var(--zero)}
+  .thm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}@media(max-width:620px){.thm{grid-template-columns:1fr}}
+  .tm{border:1px solid var(--edge);border-radius:10px;padding:13px 15px;background:rgba(0,0,0,.14)}.tm b{color:var(--ochre2);font-family:var(--mono);font-size:11px}.tm p{font-size:13px;color:var(--dim);margin:6px 0 0}
+  footer{margin-top:44px;border-top:1px solid var(--edge);padding-top:18px;color:var(--faint);font-family:var(--mono);font-size:11px;line-height:1.7}
+  footer a,.bar2 a{color:var(--ochre)}.bar2{font-family:var(--mono);font-size:11.5px;margin-bottom:16px}.bar2 a{text-decoration:none;border-bottom:1px dotted #4a4126}
+  code{font-family:var(--mono);color:var(--ochre2);background:#15120a;padding:1px 5px;border-radius:5px}
+  blockquote{margin:14px 0;padding:10px 16px;border-left:3px solid var(--ochre);color:var(--ink);font-style:italic;font-size:15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="bar2"><a href="https://davidwise01.github.io/ud0/">◄ UD0</a> &nbsp; <a href="https://davidwise01.github.io/claude-shannon/">← Shannon</a> &nbsp; LOGIKĒ · XIII · the foundations rank</div>
+<header>
+  <div class="kicker">LOGIKĒ · XIII · one sign builds all logic</div>
+  <h1>Charles Sanders <em>Peirce</em></h1>
+  <div class="who">1839 – 1914 · Cambridge, Massachusetts &amp; Milford, Pennsylvania · logician, chemist, founder of pragmatism &amp; semiotics</div>
+  <div class="sub">The great American original — and, by many accounts, the most powerful logician between Aristotle and Gödel, who reached the modern era's deepest results and was robbed of the credit by his own neglect. Two of his firsts sit at the heart of this whole lineage. He found that a <b>single connective</b> is enough to build <em>all</em> of logic — his "ampheck," the arrow <b>↓</b> (today's <b>NOR</b>) — in 1880, three decades before Sheffer's famous stroke. And, independently of Frege and at almost the same moment, he built the logic of <b>relations and quantifiers</b> — coining the notation <b>Σ</b> ("there exists") and <b>Π</b> ("for all") that, lightly changed, the world still uses.</div>
+</header>
+<div class="verdicts">
+  <div class="vc s"><span class="badge">✓ STRONG</span><p><b>Deep and first.</b> NOR-completeness (one gate builds everything), the logic of relations, and quantifier notation are rigorous, foundational, and genuinely his — arrived at independently and often <em>earlier</em> than the names that got the glory.</p></div>
+  <div class="vc m"><span class="badge">◐ ECLIPSED</span><p><b>He buried his own light.</b> Peirce published little, in scattered and difficult venues; much stayed in unread manuscripts. Frege, Russell, and Sheffer were credited for things he had already done — a loss of priority that was largely self-inflicted.</p></div>
+  <div class="vc f"><span class="badge">◔ SPRAWLING</span><p><b>A whole cosmos beyond logic.</b> Pragmatism, semiotics (the theory of signs), metaphysics, geodesy — a system of staggering scope, much of it unfinished and contested. He died poor and obscure; the rediscovery came decades later.</p></div>
+</div>
+
+<section>
+  <h2>I · The ampheck — one gate is enough</h2>
+  <p class="lede">De Morgan's sphere showed NAND is universal; Peirce got there first, and from the other side. His <b>arrow ↓</b> — "neither A nor B," what we call <b>NOR</b> — is, on its own, enough to express <em>every</em> logical function. Toggle A and B; the NOR result drives three gates built from <em>nothing but NOR</em>, and each reproduces its standard truth table. One sign, and all of logic follows.</p>
+  <div class="panel">
+    <div class="controls">
+      <span style="font-family:var(--mono);font-size:12px;color:var(--faint)">inputs:</span>
+      <button class="sw on" id="pA">A · 1</button>
+      <button class="sw on" id="pB">B · 1</button>
+      <span style="flex:1"></span>
+      <span style="font-family:var(--mono);font-size:12px;color:var(--ochre2)">A ↓ B (NOR) = <b id="norv">0</b></span>
+    </div>
+    <div class="gates">
+      <div class="gate"><div class="gn">NOT A</div><div class="gf">A ↓ A</div><div class="gv" id="gNOT">0</div><div class="match" id="mNOT"></div></div>
+      <div class="gate"><div class="gn">A AND B</div><div class="gf">(A↓A) ↓ (B↓B)</div><div class="gv" id="gAND">0</div><div class="match" id="mAND"></div></div>
+      <div class="gate"><div class="gn">A OR B</div><div class="gf">(A↓B) ↓ (A↓B)</div><div class="gv" id="gOR">0</div><div class="match" id="mOR"></div></div>
+    </div>
+    <table class="tbl" id="ttNOR"></table>
+    <div class="note">From <b>NOT, AND, OR</b> every Boolean function can be written (any truth table = an OR of ANDs of literals) — so once those three come from NOR alone, the whole of logic does. ⚑ This is exactly why a chip can be a single gate tiled billions of times — and Peirce saw it in <b>1880</b>, the earliest known statement of functional completeness, in a paper left unpublished in his lifetime.</div>
+  </div>
+</section>
+
+<section>
+  <h2>II · Σ and Π — the logic of relations</h2>
+  <p class="lede">Term logic could not say "every head <em>of a horse</em> is a head <em>of an animal</em>" — it needed <b>relations</b> and <b>quantifiers</b>. Frege built that in 1879; Peirce, independently, built it in 1883–85, and gave it the notation that stuck: <b>Σ</b> for "there exists" (a logical sum) and <b>Π</b> for "for all" (a logical product). And he saw the subtlety the whole subject turns on: <em>order matters.</em> Click the matrix to set who relates to whom, and watch two quantified statements diverge.</p>
+  <div class="panel" style="text-align:center">
+    <div style="font-family:var(--mono);font-size:11px;color:var(--faint);margin-bottom:6px">R(x, y) — click a cell so x relates to y &nbsp;·&nbsp; rows = x, columns = y</div>
+    <div class="matrix" id="mat" style="grid-template-columns:repeat(4,auto)"></div>
+    <div class="qrow">
+      <div class="q"><b>Σx Πy R(x,y)</b> &mdash; some x relates to <em>every</em> y &nbsp; <span class="v" id="vSP"></span></div>
+      <div class="q"><b>Πy Σx R(x,y)</b> &mdash; every y has <em>some</em> x relating to it &nbsp; <span class="v" id="vPS"></span></div>
+    </div>
+    <div class="note" style="text-align:left">Σx Πy ("one x for all y") is a far stronger claim than Πy Σx ("for each y, possibly a different x"). The first <em>implies</em> the second, never the reverse — the quantifier-order distinction at the root of every correct statement in mathematics and every correct database query. Peirce's <b>Σ/Π</b> is why we still read ∃ as a sum and ∀ as a product.</div>
+  </div>
+  <blockquote>"The one [logical] science to which all the others minister … is the science of drawing necessary conclusions." <span style="color:var(--faint);font-style:normal;font-size:12px">— C. S. Peirce</span></blockquote>
+</section>
+
+<section>
+  <h2>III · The two firsts, the breadth, the man</h2>
+  <div class="thm">
+    <div class="tm"><b>FUNCTIONAL COMPLETENESS</b><p>A single connective (NOR, his ↓) suffices for all logic — 1880, predating Sheffer's stroke by 33 years. The deep reason one gate can build a computer.</p></div>
+    <div class="tm"><b>RELATIONS &amp; QUANTIFIERS</b><p>Predicate logic with Σ/Π, independent of Frege; the logic of relations as a first-class subject — the spine of modern mathematics, databases, and program logic.</p></div>
+  </div>
+  <p class="note" style="border-color:var(--amber);margin-top:16px"><b style="color:var(--amber)">Gate kept on.</b> The honest frame is <em>priority and neglect</em>. Peirce's results are real and often <b>earliest</b> — but he is not the sole author of modern logic: Boole, De Morgan, Frege, and Schröder are woven through the same story, and Frege's <em>system</em> was more complete and rigorous as a foundation. Peirce's genius was matched by a gift for <b>obscuring it</b> — unfinished manuscripts, hostile relations with academic gatekeepers, a chaotic personal life that cost him his one professorship (Johns Hopkins) and left him, after 1891, in deepening poverty. He spent his last years in rural Pennsylvania, often cold and hungry, writing thousands of pages almost no one read, kept alive by quiet help from his friend William James. The arrow that builds every gate, and the Σ and Π in every logic textbook, are his — recognised, in full, only long after he was gone. ⚑ He belongs beside [[george-boole]] and [[gottlob-frege]] in the spine; the lineage simply met him late, as the world did.</p>
+</section>
+
+<footer>
+  CHARLES SANDERS PEIRCE · LOGIKĒ XIII · two-layer honest<br>
+  live NOR-universality (the ampheck ↓; NOT/AND/OR from one gate, verified 10 / 0001 / 0111) · Peirce's quantified relations (Σx Πy ≠ Πy Σx, order matters, verified)<br>
+  functional completeness of NOR (1880, before Sheffer 1913) · the logic of relations &amp; the Σ/Π quantifier notation (independent of Frege) · pragmatism &amp; semiotics beyond<br>
+  ← <a href="https://davidwise01.github.io/claude-shannon/">Shannon</a> · next → <b>Cantor</b> (the infinite &amp; the diagonal)<br>
+  LOGIKĒ · the lineage of logical mathematics · governor David Lee Wise · CC-BY-ND-4.0
+</footer>
+</div>
+<script>
+"use strict";
+// ---------- MODULE I : NOR universality ----------
+(function(){
+  const $=id=>document.getElementById(id);
+  let A=1,B=1;
+  const NOR=(a,b)=>(a||b)?0:1;
+  const NOT=a=>NOR(a,a);
+  const AND=(a,b)=>NOR(NOT(a),NOT(b));
+  const OR=(a,b)=>NOT(NOR(a,b));
+  function setv(id,v){const e=$(id);e.textContent=v;e.className='gv '+(v?'one':'zero');}
+  function draw(){
+    $('pA').textContent='A · '+A; $('pA').classList.toggle('on',!!A);
+    $('pB').textContent='B · '+B; $('pB').classList.toggle('on',!!B);
+    $('norv').textContent=NOR(A,B);
+    setv('gNOT',NOT(A)); setv('gAND',AND(A,B)); setv('gOR',OR(A,B));
+    // verify against standard gates
+    $('mNOT').textContent = NOT(A)===(A?0:1) ? '✓ = ¬A' : '✗';
+    $('mAND').textContent = AND(A,B)===(A&&B?1:0) ? '✓ = A∧B' : '✗';
+    $('mOR').textContent  = OR(A,B)===(A||B?1:0) ? '✓ = A∨B' : '✗';
+    let h='<tr><th>A</th><th>B</th><th>A ↓ B</th></tr>';
+    [[0,0],[0,1],[1,0],[1,1]].forEach(([a,b])=>{
+      const f=NOR(a,b), cur=a===A&&b===B;
+      h+='<tr><td'+(cur?' class="lit"':'')+'>'+a+'</td><td'+(cur?' class="lit"':'')+'>'+b+'</td><td class="'+(f?'outone':'outzero')+(cur?' lit':'')+'">'+f+'</td></tr>';
+    });
+    $('ttNOR').innerHTML=h;
+  }
+  $('pA').onclick=()=>{A^=1;draw();};
+  $('pB').onclick=()=>{B^=1;draw();};
+  draw();
+})();
+
+// ---------- MODULE II : Σ / Π relations ----------
+(function(){
+  const $=id=>document.getElementById(id);
+  const N=3, names=['a','b','c'];
+  let R=[[1,0,0],[0,1,0],[0,0,1]]; // start: identity
+  function build(){
+    let html='<div class="cellR hd"></div>';
+    for(let y=0;y<N;y++) html+='<div class="cellR hd">'+names[y]+'</div>';
+    for(let x=0;x<N;x++){
+      html+='<div class="cellR hd">'+names[x]+'</div>';
+      for(let y=0;y<N;y++) html+='<div class="cellR'+(R[x][y]?' on':'')+'" data-x="'+x+'" data-y="'+y+'">'+(R[x][y]?'•':'')+'</div>';
+    }
+    $('mat').innerHTML=html;
+    $('mat').querySelectorAll('[data-x]').forEach(c=>c.onclick=()=>{R[+c.dataset.x][+c.dataset.y]^=1;build();});
+    // Σx Πy : exists x such that for all y R(x,y)
+    const SP = R.some(row=>row.every(v=>v===1));
+    // Πy Σx : for all y, exists x with R(x,y)  (column has a 1)
+    const PS = names.every((_,y)=>R.some(row=>row[y]===1));
+    $('vSP').textContent = SP?'TRUE':'FALSE'; $('vSP').className='v '+(SP?'t':'f');
+    $('vPS').textContent = PS?'TRUE':'FALSE'; $('vPS').className='v '+(PS?'t':'f');
+  }
+  build();
+})();
+</script>
+</body>
+</html>
